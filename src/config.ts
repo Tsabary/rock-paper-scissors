@@ -76,4 +76,4 @@ export const OVERLAY_EMOJI_SIZE = "96px";
 export const STATS_FONT_SIZE = "18px";
 export const STATS_TEXT_COLOR = "#ffffff";
 export const STATS_MARGIN_TOP = "16px";
-export const STATS_SEPARATOR = "   |   ";
+export const STATS_SEPARATOR = "    |    ";
