@@ -69,3 +69,11 @@ export const OVERLAY_TEXT_SIZE = "72px";
 export const OVERLAY_TEXT_WEIGHT = "bold";
 export const OVERLAY_TEXT_SHADOW = "0 4px 20px rgba(0, 0, 0, 0.5)";
 export const OVERLAY_EMOJI_SIZE = "96px";
+
+// ======================
+// STATS BAR
+// ======================
+export const STATS_FONT_SIZE = "18px";
+export const STATS_TEXT_COLOR = "#ffffff";
+export const STATS_MARGIN_TOP = "16px";
+export const STATS_SEPARATOR = "   |   ";

@@ -29,6 +29,10 @@ import {
   OVERLAY_TEXT_WEIGHT,
   OVERLAY_TEXT_SHADOW,
   OVERLAY_EMOJI_SIZE,
+  STATS_FONT_SIZE,
+  STATS_TEXT_COLOR,
+  STATS_MARGIN_TOP,
+  STATS_SEPARATOR,
 } from "./config";
 import { ICONS } from "./assets/svg-paths";
 import type { Agent } from "./Agent";
@@ -39,6 +43,7 @@ export default function Simulation() {
   const gameEndedRef = useRef(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+  const [stats, setStats] = useState({ rock: 0, paper: 0, scissors: 0 });
 
   // Handle window resize for confetti
   useEffect(() => {
@@ -109,6 +114,7 @@ export default function Simulation() {
       // check collisions
       const spawnQueue: Array<{ type: Agent["type"]; x: number; y: number }> = [];
       const typeCounts = countByType(agents);
+      setStats(typeCounts);
 
       for (let i = 0; i < agents.length; i++) {
         for (let j = i + 1; j < agents.length; j++) {
@@ -192,6 +198,18 @@ export default function Simulation() {
           background: CANVAS_BACKGROUND,
         }}
       />
+
+      <div
+        style={{
+          marginTop: STATS_MARGIN_TOP,
+          fontSize: STATS_FONT_SIZE,
+          color: STATS_TEXT_COLOR,
+          width: CANVAS_WIDTH,
+          margin: `${STATS_MARGIN_TOP} auto 0`,
+        }}
+      >
+        Scissors: {stats.scissors}{STATS_SEPARATOR}Rock: {stats.rock}{STATS_SEPARATOR}Paper: {stats.paper}
+      </div>
 
       {winner && (
         <>
