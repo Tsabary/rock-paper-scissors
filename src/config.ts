@@ -11,8 +11,8 @@ export const CANVAS_BORDER_RADIUS = 12;
 // ======================
 export const BALL_RADIUS = 18;
 export const BALL_SPEED = 2;
-export const BALLS_PER_TYPE = 3; // Number of balls for each type (rock, paper, scissors)
-export const MAX_BALLS_PER_TYPE = 10; // Maximum number of balls per type (spawning limit)
+export const BALLS_PER_TYPE = 4; // Number of balls for each type (rock, paper, scissors)
+export const MAX_BALLS_PER_TYPE = 15; // Maximum number of balls per type (spawning limit)
 export const SPAWN_COOLDOWN_FRAMES = 120; // Frames (2 seconds at 60fps) before a ball can spawn again
 
 // ======================
