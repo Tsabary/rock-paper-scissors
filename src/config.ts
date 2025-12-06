@@ -77,3 +77,13 @@ export const STATS_FONT_SIZE = "18px";
 export const STATS_TEXT_COLOR = "#ffffff";
 export const STATS_MARGIN_TOP = "16px";
 export const STATS_SEPARATOR = "    |    ";
+
+// ======================
+// COUNTDOWN OVERLAY
+// ======================
+export const COUNTDOWN_DURATION = 3; // Number of seconds to count down from
+export const COUNTDOWN_TEXT_SIZE = "120px";
+export const COUNTDOWN_TEXT_COLOR = "#ffffff";
+export const COUNTDOWN_TEXT_WEIGHT = "bold";
+export const COUNTDOWN_BACKGROUND = "rgba(0, 0, 0, 0.8)";
+export const COUNTDOWN_TEXT_SHADOW = "0 4px 30px rgba(255, 255, 255, 0.5)";

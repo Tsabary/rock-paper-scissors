@@ -33,6 +33,12 @@ import {
   STATS_TEXT_COLOR,
   STATS_MARGIN_TOP,
   STATS_SEPARATOR,
+  COUNTDOWN_DURATION,
+  COUNTDOWN_TEXT_SIZE,
+  COUNTDOWN_TEXT_COLOR,
+  COUNTDOWN_TEXT_WEIGHT,
+  COUNTDOWN_BACKGROUND,
+  COUNTDOWN_TEXT_SHADOW,
 } from "./config";
 import { ICONS } from "./assets/svg-paths";
 import type { Agent } from "./Agent";
@@ -44,6 +50,20 @@ export default function Simulation() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const [stats, setStats] = useState({ rock: 0, paper: 0, scissors: 0 });
+  const [countdown, setCountdown] = useState(COUNTDOWN_DURATION);
+  const [gameStarted, setGameStarted] = useState(false);
+
+  // Handle countdown
+  useEffect(() => {
+    if (countdown > 0) {
+      const timer = setTimeout(() => {
+        setCountdown(countdown - 1);
+      }, 1000);
+      return () => clearTimeout(timer);
+    } else if (countdown === 0) {
+      setGameStarted(true);
+    }
+  }, [countdown]);
 
   // Handle window resize for confetti
   useEffect(() => {
@@ -57,6 +77,7 @@ export default function Simulation() {
   }, []);
 
   useEffect(() => {
+    if (!gameStarted) return;
     const canvas = canvasRef.current!;
     const ctx = canvas.getContext("2d")!;
     const width = canvas.width;
@@ -185,7 +206,7 @@ export default function Simulation() {
     }
 
     requestAnimationFrame(loop);
-  }, [winner]);
+  }, [gameStarted, winner]);
 
   return (
     <div style={{ textAlign: "center" }}>
@@ -210,6 +231,34 @@ export default function Simulation() {
       >
         Scissors: {stats.scissors}{STATS_SEPARATOR}Rock: {stats.rock}{STATS_SEPARATOR}Paper: {stats.paper}
       </div>
+
+      {countdown > 0 && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            background: COUNTDOWN_BACKGROUND,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 2000,
+          }}
+        >
+          <div
+            style={{
+              fontSize: COUNTDOWN_TEXT_SIZE,
+              fontWeight: COUNTDOWN_TEXT_WEIGHT,
+              color: COUNTDOWN_TEXT_COLOR,
+              textShadow: COUNTDOWN_TEXT_SHADOW,
+            }}
+          >
+            {countdown}
+          </div>
+        </div>
+      )}
 
       {winner && (
         <>
